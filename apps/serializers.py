@@ -14,7 +14,7 @@ from apps.models import News, User, Department, PhotoGallery, NewsMain, Announce
 class NewsSerializer(ModelSerializer):
     class Meta:
         model = News
-        fields = ('image', 'title')
+        fields = ('id', 'image', 'title')
 
 
 class NewsViewSerializer(ModelSerializer):
@@ -22,7 +22,7 @@ class NewsViewSerializer(ModelSerializer):
 
     class Meta:
         model = News
-        fields = ('image', 'title', 'description', 'txt', 'view', 'created_at')
+        fields = ('id', 'image', 'title', 'description', 'txt', 'view', 'created_at')
 
     def get_txt(self, obj):
         news_main_data = NewsMain.objects.filter(
@@ -33,34 +33,34 @@ class NewsViewSerializer(ModelSerializer):
 class UserViewSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = (
-            'biografiya', 'talim', 'unvon',
-            'kasbiy_faoliyati', 'mukofotlar', 'created_at')
+        fields = ('id',
+                  'biografiya', 'talim', 'unvon',
+                  'kasbiy_faoliyati', 'mukofotlar', 'created_at')
 
 
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = (
-            'image', 'full_name', 'yonalish', 'phone_number', 'email', 'ish_vaqti')
+        fields = ('id',
+                  'image', 'full_name', 'yonalish', 'phone_number', 'email', 'ish_vaqti')
 
 
 class DepartmentSerializer(ModelSerializer):
     class Meta:
         model = Department
-        fields = ('image', 'full_name', 'yonalish', 'phone_number', 'email', 'xodimlar_soni')
+        fields = ('id', 'image', 'full_name', 'yonalish', 'phone_number', 'email', 'xodimlar_soni')
 
 
 class DepartmentViewSerializer(ModelSerializer):
     class Meta:
         model = Department
-        fields = ('full_name', 'bolim_maqsadi')
+        fields = ('id', 'full_name', 'bolim_maqsadi')
 
 
 class AnnouncementsSerializer(ModelSerializer):
     class Meta:
         model = Announcements
-        fields = ('image',)
+        fields = ('id', 'image',)
 
 
 class AnnouncementsViewSerializer(ModelSerializer):
@@ -70,9 +70,10 @@ class AnnouncementsViewSerializer(ModelSerializer):
 
     class Meta:
         model = Announcements
-        fields = (
-            'image', 'title', 'ilmiy_rahbari', 'ilmiy_rahbari_email', 'ilmiy_hamrahbari', 'ilmiy_hamrahbari_email',
-            'txt', 'documents_txt', 'email')
+        fields = ('id',
+                  'image', 'title', 'ilmiy_rahbari', 'ilmiy_rahbari_email', 'ilmiy_hamrahbari',
+                  'ilmiy_hamrahbari_email',
+                  'txt', 'documents_txt', 'email')
 
     def get_txt(self, obj):
         news_main_data = AnnouncementTxt.objects.filter(
@@ -93,7 +94,7 @@ class AnnouncementsViewSerializer(ModelSerializer):
 class ScientificDevelopmentsSerializer(ModelSerializer):
     class Meta:
         model = ScientificDevelopments
-        fields = ('title',)
+        fields = ('id', 'title',)
 
 
 class ScientificDevelopmentsViewSerializer(ModelSerializer):
@@ -102,7 +103,7 @@ class ScientificDevelopmentsViewSerializer(ModelSerializer):
 
     class Meta:
         model = ScientificDevelopments
-        fields = ('title', 'image', 'txt')
+        fields = ('id', 'title', 'image', 'txt')
 
     def get_image(self, obj):
         news_main_data = ScientificDevelopmentsImage.objects.filter(
@@ -118,7 +119,7 @@ class ScientificDevelopmentsViewSerializer(ModelSerializer):
 class ScientificCouncilSerializer(ModelSerializer):
     class Meta:
         model = ScientificCouncil
-        fields = ('fish', 'ish', 'academic_degree')
+        fields = ('id', 'fish', 'ish', 'academic_degree')
 
 
 class VideoGallerySerializer(ModelSerializer):
@@ -132,7 +133,7 @@ class VideoGallerySerializer(ModelSerializer):
 class PhotoGallerySerializer(ModelSerializer):
     class Meta:
         model = PhotoGallery
-        fields = ('image',)
+        fields = ('id', 'image',)
 
 
 class PhotoGalleryViewSerializer(ModelSerializer):
