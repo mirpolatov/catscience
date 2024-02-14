@@ -22,6 +22,7 @@ from drf_yasg import openapi
 from django.contrib import admin
 from django.urls import path, include
 
+from root import settings
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -45,3 +46,13 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
 ]
+from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
+
+urlpatterns += i18n_patterns(
+    # ... your patterns for the internationalized views
+)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
