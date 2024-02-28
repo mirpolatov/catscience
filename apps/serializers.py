@@ -44,22 +44,19 @@ class NewsViewSerializer(ModelSerializer):
 class UserViewSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('id',
-                  'biografiya', 'talim', 'unvon',
-                  'kasbiy_faoliyati', 'mukofotlar', 'created_at')
+        fields = '__all__'
 
 
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('id',
-                  'image', 'full_name', 'yonalish', 'phone_number', 'email', 'ish_vaqti')
+        fields = '__all__'
 
 
 class DepartmentSerializer(ModelSerializer):
     class Meta:
         model = Department
-        fields = ('id', 'image', 'full_name', 'yonalish', 'phone_number', 'email', 'xodimlar_soni')
+        fields = '__all__'
 
 
 class DepartmentViewSerializer(ModelSerializer):
@@ -131,7 +128,7 @@ class AnnouncementsViewSerializer(ModelSerializer):
 class ScientificDevelopmentsSerializer(ModelSerializer):
     class Meta:
         model = ScientificDevelopments
-        fields = ('id', 'title',)
+        fields = ('id', 'title_uz', 'title_ru', 'title_eng')
 
 
 class ScientificDevelopmentsViewSerializer(ModelSerializer):
@@ -168,7 +165,8 @@ class ScientificDevelopmentsViewSerializer(ModelSerializer):
 class ScientificCouncilSerializer(ModelSerializer):
     class Meta:
         model = ScientificCouncil
-        fields = ('id', 'fish_uz','fish_ru','fish_eng', 'ish_uz','ish_ru','ish_eng', 'academic_degree_uz','academic_degree_ru','academic_degree_eng')
+        fields = ('id', 'fish_uz', 'fish_ru', 'fish_eng', 'ish_uz', 'ish_ru', 'ish_eng', 'academic_degree_uz',
+                  'academic_degree_ru', 'academic_degree_eng')
 
 
 class VideoGallerySerializer(ModelSerializer):
