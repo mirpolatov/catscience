@@ -86,11 +86,14 @@ WSGI_APPLICATION = 'root.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'centr',    # Ma'lumotlar bazasining nomi (Docker Compose faylida belgilangan nom)
+        'USER': 'postgres',        # Foydalanuvchi nomi (Docker Compose faylida belgilangan nom)
+        'PASSWORD': '1',# Foydalanuvchi paroli (Docker Compose faylida belgilangan parol)
+        'HOST': 'localhost',     # Ma'lumotlar bazasi serverining manzili
+        'PORT': '5432',          # Ma'lumotlar bazasi serverining porti
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
