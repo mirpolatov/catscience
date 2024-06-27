@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +26,7 @@ SECRET_KEY = 'django-insecure-od1yvi@$@wkbyfps)n8_pwhfa(h(sxv%qz$^&k6v=2@&bh^cl7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', '158.220.100.105:8050', '158.220.100.105']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -87,13 +89,20 @@ WSGI_APPLICATION = 'root.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'centr',  # Ma'lumotlar bazasining nomi (Docker Compose faylida belgilangan nom)
-        'USER': 'postgres',  # Foydalanuvchi nomi (Docker Compose faylida belgilangan nom)
-        'PASSWORD': '1',  # Foydalanuvchi paroli (Docker Compose faylida belgilangan parol)
-        'HOST': 'localhost',  # Ma'lumotlar bazasi serverining manzili
-        'PORT': '5432',  # Ma'lumotlar bazasi serverining porti
+        'NAME': 'centr',    # Ma'lumotlar bazasining nomi (Docker Compose faylida belgilangan nom)
+        'USER': 'postgres',        # Foydalanuvchi nomi (Docker Compose faylida belgilangan nom)
+        'PASSWORD': '1',# Foydalanuvchi paroli (Docker Compose faylida belgilangan parol)
+        'HOST': 'localhost',     # Ma'lumotlar bazasi serverining manzili
+        'PORT': '5432',          # Ma'lumotlar bazasi serverining porti
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -115,12 +124,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGES = [
-    ('en', 'English'),
-    ('uz', 'O''zbek'),
-    ('ru', 'Russian'),
-    # Add other languages if necessary...
-]
+LANGUAGE_CODE = 'ru'
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale/')]
+
+LANGUAGES = (
+    ('ru', gettext_lazy('Russian')),
+    ('en', gettext_lazy('English')),
+    ('uz', gettext_lazy('Uzbek')),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+MODELTRANSLATION_LANGUAGES = ('en', 'ru', 'uz')
 
 TIME_ZONE = 'Asia/Tashkent'
 
